@@ -1,0 +1,24 @@
+Package: SA24204178
+Type: Package
+Title: Calculate QIC and QAIC for GEE Models
+Version: 1.0
+Date: 2024-12-05
+Author: Ran Deng 
+Maintainer: DengRan <Dr2016@mail.ustc.edu.cn>
+Description: This package calculates the Quasi-likelihood under the Independence
+    Model Criterion (QAIC) and the Quasi-likelihood under the Independence model 
+    Criterion (QIC) for Generalized Estimating Equations (GEE) models. The 
+    package provides tools to assess and compare the fit of GEE models using 
+    both QAIC and QIC, which are useful for model selection in various types of 
+    regression models, including Gaussian, binomial, and Poisson families.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.0),
+    geepack (>= 1.3.12)
+Suggests: knitr, rmarkdown, e1071, class, MASS, boot, bootstrap, DAAG, cramer,
+    stats, coda, gsl, dplyr, tidyr, lpSolve, microbenchmark
+VignetteBuilder: knitr
+LinkingTo: Rcpp
+RoxygenNote: 7.3.2
+Encoding: UTF-8
+URL: http://github.com/Ran Deng/SA24204178
+BugReports: http://github.com/Ran Deng/SA24204178/issues

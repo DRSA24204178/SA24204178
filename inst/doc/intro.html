@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Ran Deng" />
+
+<meta name="date" content="2024-12-09" />
+
+<title>SA24204178 包用户指南</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">SA24204178 包用户指南</h1>
+<h4 class="author">Ran Deng</h4>
+<h4 class="date">2024-12-09</h4>
+
+
+<div id="TOC">
+<ul>
+<li><a href="#背景与介绍" id="toc-背景与介绍">背景与介绍</a></li>
+<li><a href="#函数概述" id="toc-函数概述">函数概述</a></li>
+<li><a href="#数学计算公式" id="toc-数学计算公式">数学计算公式</a></li>
+<li><a href="#安装" id="toc-安装">安装</a></li>
+<li><a href="#qic函数的定义与示例" id="toc-qic函数的定义与示例">QIC函数的定义与示例</a>
+<ul>
+<li><a href="#简介" id="toc-简介">简介</a></li>
+<li><a href="#函数定义" id="toc-函数定义">函数定义</a></li>
+<li><a href="#示例" id="toc-示例">示例</a></li>
+</ul></li>
+<li><a href="#qaic函数的定义与示例" id="toc-qaic函数的定义与示例">QAIC函数的定义与示例</a>
+<ul>
+<li><a href="#简介-1" id="toc-简介-1">简介</a></li>
+<li><a href="#函数定义-1" id="toc-函数定义-1">函数定义</a></li>
+<li><a href="#示例-1" id="toc-示例-1">示例</a></li>
+</ul></li>
+<li><a href="#结论" id="toc-结论">结论</a>
+<ul>
+<li><a href="#解释" id="toc-解释">解释</a></li>
+<li><a href="#限制" id="toc-限制">限制</a></li>
+</ul></li>
+<li><a href="#总结" id="toc-总结">总结</a></li>
+</ul>
+</div>
+
+<div id="背景与介绍" class="section level1">
+<h1>背景与介绍</h1>
+<p>广义估计方程（GEE）是一种常用于分析相关数据的方法，特别适用于纵向数据或簇群研究设计。在拟合
+GEE
+模型时，通常需要比较不同的模型，以确定哪个模型在拟合度和复杂性之间提供最佳平衡。<br />
+像 AIC 和 BIC 这样的模型选择准则广泛用于比较统计模型。然而，由于 GEE
+模型采用准似然方法，这些准则并不直接适用于 GEE 模型。QIC 和 QAIC 是 AIC
+的类比和扩展，专门用于 GEE
+模型，通过考虑模型拟合度和参数数量，帮助比较不同的 GEE 模型。</p>
+<p>QIC（Quasi-likelihood under the Independence model Criterion） QIC
+是用于GEE模型的准似然信息准则，旨在评估和比较不同GEE模型的拟合优度。它类似于AIC（Akaike
+Information
+Criterion），但专门针对GEE模型的准似然估计进行了调整。QIC的计算考虑了模型的复杂度（参数数量）和拟合优度（准似然值），有助于选择最佳的模型。</p>
+<p>QAIC（Quasi-Akaike Information Criterion） QAIC
+是对AIC的扩展，适用于准似然估计的模型，如GEE或GLM模型。它不仅考虑了模型的拟合优度和复杂度，还包括了小样本量的修正。</p>
+</div>
+<div id="函数概述" class="section level1">
+<h1>函数概述</h1>
+<p>本包包含以下四个主要函数：</p>
+<ol style="list-style-type: decimal">
+<li><strong><code>calculate_QAIC_cpp</code></strong>：基于C++的函数，用于计算GEE模型的QAIC。</li>
+<li><strong><code>calculate_QIC_cpp</code></strong>：基于C++的函数，用于计算GEE模型的QIC。</li>
+<li><strong><code>calculate_QAIC_R</code></strong>：R函数，用于计算GEE或GLM模型的QAIC。</li>
+<li><strong><code>calculate_QIC_R</code></strong>：R函数，用于计算GEE模型的QIC。</li>
+</ol>
+</div>
+<div id="数学计算公式" class="section level1">
+<h1>数学计算公式</h1>
+<p>QIC（Quasi-likelihood under the Independence model
+Criterion）的计算公式如下：</p>
+<p><span class="math display">\[
+\text{QIC} = -2 \cdot \text{log-likelihood} + 2 \cdot k
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(\text{log-likelihood}\)</span>：拟合模型的准似然。</li>
+<li><span class="math inline">\(k\)</span>：模型参数的数量。</li>
+</ul>
+<p>QAIC（Quasi-Akaike Information Criterion）的计算公式如下：</p>
+<p><span class="math display">\[
+\text{QAIC} = -2 \cdot \text{Quasi-likelihood} + 2 \cdot k + \frac{2
+\cdot k \cdot (k + 1)}{n - k - 1}
+\]</span></p>
+其中，
+<p>较低的 QIC 和 QAIC 值表示模型拟合较好，同时考虑了模型复杂性。</p>
+</div>
+<div id="安装" class="section level1">
+<h1>安装</h1>
+<p>要使用 <code>calculate_QIC_R</code> 函数,
+<code>calculate_QIC_cpp</code> 函数，<code>calculate_QAIC_R</code>
+函数和 <code>calculate_QAIC_cpp</code> 函数，请确保已安装并加载了
+<code>SA24204178</code> 包以及必要的依赖包 <code>geepack</code> 和
+<code>Rcpp</code>。（该函数依赖于 <code>geepack</code> 包来拟合 GEE
+模型。）</p>
+</div>
+<div id="qic函数的定义与示例" class="section level1">
+<h1>QIC函数的定义与示例</h1>
+<div id="简介" class="section level2">
+<h2>简介</h2>
+<p>本示例文档展示了如何使用 <code>SA24204178</code> 包中的
+<code>calculate_QIC_R</code> 函数和<code>calculate_QIC_cpp</code>
+函数，来计算拟合的广义估计方程（GEE）模型的独立性模型准则（QIC）。QIC
+类似于 AIC 和 BIC，用于模型比较。</p>
+</div>
+<div id="函数定义" class="section level2">
+<h2>函数定义</h2>
+<p>calculate_QIC_R 的函数算法如下：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>calculate_QIC_R <span class="ot">&lt;-</span> <span class="cf">function</span>(gee_model) {</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  </span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="co"># 检查输入模型是否为geeglm对象（来自geepack包的拟合模型）</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">inherits</span>(gee_model, <span class="st">&quot;geeglm&quot;</span>)) {</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;模型必须是来自geepack包的拟合geeglm对象。&quot;</span>)  <span class="co"># 如果输入不正确，则显示错误消息</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  }</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  </span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  <span class="co"># 提取模型的分布族（例如，高斯分布、二项分布、泊松分布）</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  family <span class="ot">&lt;-</span> gee_model<span class="sc">$</span>family<span class="sc">$</span>family</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  </span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  <span class="co"># 根据模型的分布族计算准似然值</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  <span class="cf">if</span> (family <span class="sc">==</span> <span class="st">&quot;gaussian&quot;</span>) {</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="co"># 对于高斯分布，计算正态分布的对数似然值</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">summary</span>(gee_model)<span class="sc">$</span>geese<span class="sc">$</span>scale<span class="sc">$</span>estimate) <span class="co"># 残差的标准误差</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(gee_model<span class="sc">$</span>residuals)  <span class="co"># 观测数</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    logLikQ <span class="ot">&lt;-</span> <span class="sc">-</span> (n <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="fu">log</span>(<span class="dv">2</span> <span class="sc">*</span> pi) <span class="sc">+</span> <span class="fu">log</span>(sigma<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">-</span> <span class="fu">sum</span>(gee_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span>)  <span class="co"># 高斯分布的对数似然值</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (family <span class="sc">==</span> <span class="st">&quot;binomial&quot;</span>) {</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>    <span class="co"># 对于二项分布，计算二元结果的对数似然值</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> gee_model<span class="sc">$</span>fitted.values  <span class="co"># 拟合值（概率）</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    y <span class="ot">&lt;-</span> gee_model<span class="sc">$</span>y  <span class="co"># 实际二元结果</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>    epsilon <span class="ot">&lt;-</span> <span class="fl">1e-15</span>  <span class="co"># 防止log(0)错误的小值</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(mu, epsilon), <span class="dv">1</span> <span class="sc">-</span> epsilon)  <span class="co"># 限制mu值，防止log(0)</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>    logLikQ <span class="ot">&lt;-</span> <span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(mu) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> y) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> mu))  <span class="co"># 二项分布的对数似然值</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (family <span class="sc">==</span> <span class="st">&quot;poisson&quot;</span>) {</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>    <span class="co"># 对于泊松分布，计算计数数据的对数似然值</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> gee_model<span class="sc">$</span>fitted.values  <span class="co"># 拟合值（计数的均值）</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>    y <span class="ot">&lt;-</span> gee_model<span class="sc">$</span>y  <span class="co"># 实际计数数据</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>    epsilon <span class="ot">&lt;-</span> <span class="fl">1e-15</span>  <span class="co"># 防止log(0)错误的小值</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> <span class="fu">pmax</span>(mu, epsilon)  <span class="co"># 限制mu值，防止log(0)</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>    logLikQ <span class="ot">&lt;-</span> <span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(mu) <span class="sc">-</span> mu <span class="sc">-</span> <span class="fu">lgamma</span>(y <span class="sc">+</span> <span class="dv">1</span>))  <span class="co"># 泊松分布的对数似然值</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;此分布族的QIC计算尚未实现。&quot;</span>)  <span class="co"># 如果是未实现的分布族，停止执行</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>  }</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>  </span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>  <span class="co"># 提取模型的参数数量（自由度）</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">coef</span>(gee_model))  <span class="co"># 模型中的参数数量</span></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a>  </span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a>  <span class="co"># 计算QIC: QIC = -2 * 对数似然值 + 2 * 参数数量</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a>  QIC <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> logLikQ <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> k</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>  </span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a>  <span class="co"># 返回计算得到的QIC值</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>  <span class="fu">return</span>(QIC)</span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>}</span></code></pre></div>
+<p>calculate_QIC_cpp 的函数算法如下：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>double <span class="fu">calculate_QIC_cpp</span>(List gee_model) {</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    </span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="sc">/</span><span class="er">/</span> 检查gee_model对象是否包含必要的组件（family、fitted.values、y、residuals、coefficients）</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;family&quot;</span>) <span class="sc">||</span> </span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>        <span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;fitted.values&quot;</span>) <span class="sc">||</span> </span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>        <span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;y&quot;</span>) <span class="sc">||</span> </span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>        <span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;residuals&quot;</span>) <span class="sc">||</span> </span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>        <span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;coefficients&quot;</span>)) {</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="st">&quot;模型对象必须包含 &#39;family&#39;、&#39;fitted.values&#39;、&#39;y&#39;、&#39;residuals&#39; 和 &#39;coefficients&#39; 元素。&quot;</span>);</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    }</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    </span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="sc">/</span><span class="er">/</span> 提取模型的分布族、拟合值、残差和响应变量（y）</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    List family <span class="ot">=</span> gee_model[<span class="st">&quot;family&quot;</span>];               <span class="sc">/</span><span class="er">/</span> 分布族对象（高斯、二项、泊松等）</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    String family_name <span class="ot">=</span> as<span class="sc">&lt;</span>String<span class="sc">&gt;</span>(family[<span class="st">&quot;family&quot;</span>]); <span class="sc">/</span><span class="er">/</span> 分布族名称（例如，<span class="st">&quot;gaussian&quot;</span>、<span class="st">&quot;binomial&quot;</span>、<span class="st">&quot;poisson&quot;</span>）</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>    </span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>    NumericVector fitted_values <span class="ot">=</span> gee_model[<span class="st">&quot;fitted.values&quot;</span>];  <span class="sc">/</span><span class="er">/</span> 拟合模型值（预测值）</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>    NumericVector y <span class="ot">=</span> gee_model[<span class="st">&quot;y&quot;</span>];                          <span class="sc">/</span><span class="er">/</span> 实际结果值</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>    NumericVector residuals <span class="ot">=</span> gee_model[<span class="st">&quot;residuals&quot;</span>];          <span class="sc">/</span><span class="er">/</span> 模型残差</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>    </span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>    double logLikQ <span class="ot">=</span> <span class="fl">0.0</span>;        <span class="sc">/</span><span class="er">/</span> 初始化对数似然值的变量</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>    R_xlen_t n <span class="ot">=</span> <span class="fu">residuals.size</span>(); <span class="sc">/</span><span class="er">/</span> 观测数</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>    double epsilon <span class="ot">=</span> <span class="fl">1e-15</span>;       <span class="sc">/</span><span class="er">/</span> 防止<span class="fu">log</span>(<span class="dv">0</span>)错误的小值</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>    </span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>    <span class="sc">/</span><span class="er">/</span> 根据模型分布族类型进行QIC计算</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>    <span class="cf">if</span> (family_name <span class="sc">==</span> <span class="st">&quot;gaussian&quot;</span>) {</span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 对于高斯分布（正态分布）</span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>        List geese <span class="ot">=</span> gee_model[<span class="st">&quot;geese&quot;</span>];</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">geese.containsElementNamed</span>(<span class="st">&quot;gamma&quot;</span>)) {</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>            <span class="fu">stop</span>(<span class="st">&quot;geese对象必须包含&#39;scale&#39;。&quot;</span>);</span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>        }</span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a>        double gamma <span class="ot">=</span> geese[<span class="st">&quot;gamma&quot;</span>];  </span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a>        double sigma <span class="ot">=</span> <span class="fu">sqrt</span>(gamma); <span class="sc">/</span><span class="er">/</span> 残差的标准误差</span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 高斯模型的对数似然值计算</span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a>        logLikQ <span class="ot">=</span> <span class="sc">-</span> (n <span class="sc">/</span> <span class="fl">2.0</span>) <span class="sc">*</span> (<span class="fu">log</span>(<span class="dv">2</span> <span class="sc">*</span> M_PI) <span class="sc">+</span> <span class="fu">log</span>(sigma <span class="sc">*</span> sigma)) <span class="sc">-</span> <span class="fu">sum</span>(residuals <span class="sc">*</span> residuals) <span class="sc">/</span> (<span class="fl">2.0</span> <span class="sc">*</span> sigma <span class="sc">*</span> sigma);</span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a>        </span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (family_name <span class="sc">==</span> <span class="st">&quot;binomial&quot;</span>) {</span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 对于二项分布（逻辑回归）</span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 防止<span class="fu">log</span>(<span class="dv">0</span>)，通过将拟合值裁剪在epsilon和1 <span class="sc">-</span> epsilon之间</span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a>        fitted_values <span class="ot">=</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(fitted_values, epsilon), <span class="dv">1</span> <span class="sc">-</span> epsilon);  </span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 二项模型的对数似然值计算</span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a>        logLikQ <span class="ot">=</span> <span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(fitted_values) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> y) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> fitted_values));</span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a>        </span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (family_name <span class="sc">==</span> <span class="st">&quot;poisson&quot;</span>) {</span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 对于泊松分布（计数数据）</span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 防止<span class="fu">log</span>(<span class="dv">0</span>)，确保拟合值大于epsilon</span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a>        fitted_values <span class="ot">=</span> <span class="fu">pmax</span>(fitted_values, epsilon);  </span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 泊松模型的对数似然值计算</span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a>        logLikQ <span class="ot">=</span> <span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(fitted_values) <span class="sc">-</span> fitted_values <span class="sc">-</span> <span class="fu">lgamma</span>(y <span class="sc">+</span> <span class="dv">1</span>));</span>
+<span id="cb2-49"><a href="#cb2-49" tabindex="-1"></a>        </span>
+<span id="cb2-50"><a href="#cb2-50" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a>        <span class="sc">/</span><span class="er">/</span> 如果模型分布族不支持，停止执行</span>
+<span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;该分布族的QIC计算尚未实现。&quot;</span>);</span>
+<span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a>    }</span>
+<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a>    </span>
+<span id="cb2-55"><a href="#cb2-55" tabindex="-1"></a>    <span class="sc">/</span><span class="er">/</span> 模型中的参数数量（系数）</span>
+<span id="cb2-56"><a href="#cb2-56" tabindex="-1"></a>    NumericVector coefficients <span class="ot">=</span> gee_model[<span class="st">&quot;coefficients&quot;</span>]; <span class="sc">/</span><span class="er">/</span> 提取系数作为NumericVector</span>
+<span id="cb2-57"><a href="#cb2-57" tabindex="-1"></a>    int k <span class="ot">=</span> <span class="fu">coefficients.size</span>();  <span class="sc">/</span><span class="er">/</span> 获取模型参数的数量</span>
+<span id="cb2-58"><a href="#cb2-58" tabindex="-1"></a>    </span>
+<span id="cb2-59"><a href="#cb2-59" tabindex="-1"></a>    <span class="sc">/</span><span class="er">/</span> 计算QIC<span class="sc">:</span> QIC <span class="ot">=</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> 对数似然值 <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> 参数数量</span>
+<span id="cb2-60"><a href="#cb2-60" tabindex="-1"></a>    double QIC <span class="ot">=</span> <span class="sc">-</span><span class="fl">2.0</span> <span class="sc">*</span> logLikQ <span class="sc">+</span> <span class="fl">2.0</span> <span class="sc">*</span> k;</span>
+<span id="cb2-61"><a href="#cb2-61" tabindex="-1"></a>    </span>
+<span id="cb2-62"><a href="#cb2-62" tabindex="-1"></a>    <span class="sc">/</span><span class="er">/</span> 返回计算得到的QIC值</span>
+<span id="cb2-63"><a href="#cb2-63" tabindex="-1"></a>    return QIC;</span>
+<span id="cb2-64"><a href="#cb2-64" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="示例" class="section level2">
+<h2>示例</h2>
+<p>以下是如何使用 calculate_QIC_R 函数计算不同族类型的 GEE 模型的 QIC
+值的示例：高斯族、二项族和泊松族。</p>
+<div id="示例-1高斯族正态分布" class="section level3">
+<h3>示例 1：高斯族（正态分布）</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># 模拟一些数据</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">250</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">rnorm</span>(<span class="dv">250</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">250</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># 拟合一个高斯族的 GEE 模型</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>fit_gaussian <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  y <span class="sc">~</span> x1 <span class="sc">+</span> x2, </span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>  <span class="at">family =</span> gaussian, </span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>  <span class="at">data =</span> mydata, </span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>  <span class="at">id =</span> id, </span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;exchangeable&quot;</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>)</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co"># 计算 QIC</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>qic_gaussian_r <span class="ot">&lt;-</span> <span class="fu">calculate_QIC_R</span>(fit_gaussian)</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="fu">print</span>(qic_gaussian_r)</span></code></pre></div>
+<pre><code>## [1] 716.4814</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>qic_gaussian_cpp<span class="ot">&lt;-</span> <span class="fu">calculate_QIC_cpp</span>(fit_gaussian)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">print</span>(qic_gaussian_cpp)</span></code></pre></div>
+<pre><code>## [1] 716.4814</code></pre>
+</div>
+<div id="示例-2二项族用于二元结果的逻辑回归" class="section level3">
+<h3>示例 2：二项族（用于二元结果的逻辑回归）</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># 模拟一些二项型结果数据</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>mydata_binomial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">250</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">rnorm</span>(<span class="dv">250</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rbinom</span>(<span class="dv">250</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>)</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co"># 拟合一个二项族的 GEE 模型</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>fit_binomial <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  y <span class="sc">~</span> x1 <span class="sc">+</span> x2, </span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>  <span class="at">family =</span> binomial, </span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>  <span class="at">data =</span> mydata_binomial, </span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>  <span class="at">id =</span> id, </span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;exchangeable&quot;</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>)</span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co"># 计算 QIC</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>qic_binomial_r <span class="ot">&lt;-</span> <span class="fu">calculate_QIC_R</span>(fit_binomial)</span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a><span class="fu">print</span>(qic_binomial_r)</span></code></pre></div>
+<pre><code>## [1] 351.5396</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>qic_binomial_cpp <span class="ot">&lt;-</span> <span class="fu">calculate_QIC_cpp</span>(fit_binomial)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">print</span>(qic_binomial_cpp)</span></code></pre></div>
+<pre><code>## [1] 351.5396</code></pre>
+</div>
+<div id="示例-3泊松族计数数据" class="section level3">
+<h3>示例 3：泊松族（计数数据）</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># 模拟一些计数数据</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">789</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>mydata_poisson <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">250</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">rnorm</span>(<span class="dv">250</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rpois</span>(<span class="dv">250</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co"># 拟合一个泊松族的 GEE 模型</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>fit_poisson <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>  y <span class="sc">~</span> x1 <span class="sc">+</span> x2, </span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>  <span class="at">family =</span> poisson, </span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>  <span class="at">data =</span> mydata_poisson, </span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>  <span class="at">id =</span> id, </span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;exchangeable&quot;</span></span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>)</span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co"># 计算 QIC</span></span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>qic_poisson_r <span class="ot">&lt;-</span> <span class="fu">calculate_QIC_R</span>(fit_poisson)</span>
+<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="fu">print</span>(qic_poisson_r)</span></code></pre></div>
+<pre><code>## [1] 841.9438</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>qic_poisson_cpp <span class="ot">&lt;-</span> <span class="fu">calculate_QIC_cpp</span>(fit_poisson)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">print</span>(qic_poisson_cpp)</span></code></pre></div>
+<pre><code>## [1] 841.9438</code></pre>
+</div>
+</div>
+</div>
+<div id="qaic函数的定义与示例" class="section level1">
+<h1>QAIC函数的定义与示例</h1>
+<div id="简介-1" class="section level2">
+<h2>简介</h2>
+<p>本示例文档展示了如何使用 SA24204178 包中的 calculate_QAIC_R 函数和
+calculate_QAIC_cpp
+函数，来计算拟合广义估计方程（GEE）模型的准似然Akaike信息准则（QAIC）。QAIC
+是一种类似于 AIC 和 BIC 的模型选择准则，专门用于比较 GEE
+模型（样本较小时）的拟合优度。</p>
+</div>
+<div id="函数定义-1" class="section level2">
+<h2>函数定义</h2>
+<p>calculate_QAIC_R的函数算法如下：</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>calculate_QAIC_R <span class="ot">&lt;-</span> <span class="cf">function</span>(model) {</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  </span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="co"># 检查输入模型是否为geeglm对象（来自geepack包的拟合模型）</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="co"># 或者是glm对象（来自stats包的拟合模型）</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">inherits</span>(model, <span class="st">&quot;geeglm&quot;</span>) <span class="sc">&amp;&amp;</span> <span class="sc">!</span><span class="fu">inherits</span>(model, <span class="st">&quot;glm&quot;</span>)) {</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;模型必须是已拟合的&#39;geeglm&#39;或&#39;glm&#39;对象。&quot;</span>)  <span class="co"># 如果输入不正确，则显示错误消息</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  }</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>  </span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>  <span class="co"># 提取模型的分布族（例如，高斯分布、二项分布、泊松分布）</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>  family <span class="ot">&lt;-</span> model<span class="sc">$</span>family<span class="sc">$</span>family</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  </span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="co"># 提取拟合值和响应变量</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  fitted_values <span class="ot">&lt;-</span> model<span class="sc">$</span>fitted.values  <span class="co"># 获取拟合值（预测值）</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  y <span class="ot">&lt;-</span> model<span class="sc">$</span>y  <span class="co"># 实际响应变量（观测结果）</span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>  residuals <span class="ot">&lt;-</span> y <span class="sc">-</span> fitted_values  <span class="co"># 计算残差（观测值 - 预测值）</span></span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(y)  <span class="co"># 样本大小（观测数量）</span></span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a>  </span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>  <span class="co"># 根据模型的分布族计算准似然值</span></span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a>  <span class="cf">if</span> (family <span class="sc">==</span> <span class="st">&quot;gaussian&quot;</span>) {</span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a>    <span class="co"># 对于高斯分布（正态分布），计算准似然值</span></span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">summary</span>(model)<span class="sc">$</span>geese<span class="sc">$</span>scale<span class="sc">$</span>estimate)  <span class="co"># 从模型的scale估计中提取标准误差</span></span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a>    <span class="co"># 计算高斯数据的准似然值</span></span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a>    quasi_likelihood <span class="ot">&lt;-</span> <span class="sc">-</span> (n <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="fu">log</span>(<span class="dv">2</span> <span class="sc">*</span> pi) <span class="sc">+</span> <span class="fu">log</span>(sigma<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">-</span> <span class="fu">sum</span>(residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (family <span class="sc">==</span> <span class="st">&quot;binomial&quot;</span>) {</span>
+<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a>    <span class="co"># 对于二项分布（例如，逻辑回归），计算准似然值</span></span>
+<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> fitted_values  <span class="co"># 拟合值代表概率</span></span>
+<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a>    epsilon <span class="ot">&lt;-</span> <span class="fl">1e-15</span>  <span class="co"># 防止log(0)错误的小值</span></span>
+<span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(mu, epsilon), <span class="dv">1</span> <span class="sc">-</span> epsilon)  <span class="co"># 限制mu值，防止log(0)</span></span>
+<span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a>    <span class="co"># 计算二项数据的准似然值</span></span>
+<span id="cb15-30"><a href="#cb15-30" tabindex="-1"></a>    quasi_likelihood <span class="ot">&lt;-</span> <span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(mu) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> y) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> mu))  <span class="co"># 二项分布的对数似然值</span></span>
+<span id="cb15-31"><a href="#cb15-31" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (family <span class="sc">==</span> <span class="st">&quot;poisson&quot;</span>) {</span>
+<span id="cb15-32"><a href="#cb15-32" tabindex="-1"></a>    <span class="co"># 对于泊松分布（计数数据），计算准似然值</span></span>
+<span id="cb15-33"><a href="#cb15-33" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> fitted_values  <span class="co"># 拟合值代表期望计数</span></span>
+<span id="cb15-34"><a href="#cb15-34" tabindex="-1"></a>    epsilon <span class="ot">&lt;-</span> <span class="fl">1e-15</span>  <span class="co"># 防止log(0)错误的小值</span></span>
+<span id="cb15-35"><a href="#cb15-35" tabindex="-1"></a>    mu <span class="ot">&lt;-</span> <span class="fu">pmax</span>(mu, epsilon)  <span class="co"># 限制mu值，防止log(0)</span></span>
+<span id="cb15-36"><a href="#cb15-36" tabindex="-1"></a>    <span class="co"># 计算泊松数据的准似然值</span></span>
+<span id="cb15-37"><a href="#cb15-37" tabindex="-1"></a>    quasi_likelihood <span class="ot">&lt;-</span> <span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(mu) <span class="sc">-</span> mu <span class="sc">-</span> <span class="fu">lgamma</span>(y <span class="sc">+</span> <span class="dv">1</span>))  <span class="co"># 泊松分布的对数似然值</span></span>
+<span id="cb15-38"><a href="#cb15-38" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-39"><a href="#cb15-39" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;此分布族的QAIC计算尚未实现。&quot;</span>)  <span class="co"># 如果不支持该分布族，停止执行</span></span>
+<span id="cb15-40"><a href="#cb15-40" tabindex="-1"></a>  }</span>
+<span id="cb15-41"><a href="#cb15-41" tabindex="-1"></a>  </span>
+<span id="cb15-42"><a href="#cb15-42" tabindex="-1"></a>  <span class="co"># 获取模型中的参数数量（k）（自由度）</span></span>
+<span id="cb15-43"><a href="#cb15-43" tabindex="-1"></a>  k <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">coef</span>(model))  <span class="co"># 模型中的参数数量（系数）</span></span>
+<span id="cb15-44"><a href="#cb15-44" tabindex="-1"></a>  </span>
+<span id="cb15-45"><a href="#cb15-45" tabindex="-1"></a>  <span class="co"># 使用以下公式计算QAIC：</span></span>
+<span id="cb15-46"><a href="#cb15-46" tabindex="-1"></a>  <span class="co"># QAIC = -2 * 准似然值 + 2 * k + (2 * k * (k + 1)) / (n - k - 1)</span></span>
+<span id="cb15-47"><a href="#cb15-47" tabindex="-1"></a>  <span class="co">#   - 其中：</span></span>
+<span id="cb15-48"><a href="#cb15-48" tabindex="-1"></a>  <span class="co">#     - 准似然值是模型的似然估计</span></span>
+<span id="cb15-49"><a href="#cb15-49" tabindex="-1"></a>  <span class="co">#     - k是模型参数的数量</span></span>
+<span id="cb15-50"><a href="#cb15-50" tabindex="-1"></a>  <span class="co">#     - n是样本大小</span></span>
+<span id="cb15-51"><a href="#cb15-51" tabindex="-1"></a>  QAIC <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> quasi_likelihood <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> k <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">*</span> k <span class="sc">*</span> (k <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">/</span> (n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb15-52"><a href="#cb15-52" tabindex="-1"></a>  </span>
+<span id="cb15-53"><a href="#cb15-53" tabindex="-1"></a>  <span class="co"># 返回计算得到的QAIC值</span></span>
+<span id="cb15-54"><a href="#cb15-54" tabindex="-1"></a>  <span class="fu">return</span>(QAIC)</span>
+<span id="cb15-55"><a href="#cb15-55" tabindex="-1"></a>}</span></code></pre></div>
+<p>calculate_QAIC_cpp的函数算法如下：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>double <span class="fu">calculate_QAIC_cpp</span>(List gee_model) {</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>   </span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>   <span class="sc">/</span><span class="er">/</span> 检查gee_model对象是否包含必要的组件（family、fitted.values、y、residuals、coefficients）</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>   <span class="cf">if</span> (<span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;family&quot;</span>) <span class="sc">||</span> </span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>       <span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;fitted.values&quot;</span>) <span class="sc">||</span> </span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>       <span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;y&quot;</span>) <span class="sc">||</span> </span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>       <span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;residuals&quot;</span>) <span class="sc">||</span> </span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>       <span class="sc">!</span><span class="fu">gee_model.containsElementNamed</span>(<span class="st">&quot;coefficients&quot;</span>)) {</span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>       <span class="fu">stop</span>(<span class="st">&quot;模型对象必须包含 &#39;family&#39;、&#39;fitted.values&#39;、&#39;y&#39;、&#39;residuals&#39; 和 &#39;coefficients&#39; 元素。&quot;</span>);</span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>   }</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>   </span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>   <span class="sc">/</span><span class="er">/</span> 提取模型的分布族、拟合值、残差和响应变量（y）</span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>   List family <span class="ot">=</span> gee_model[<span class="st">&quot;family&quot;</span>];               <span class="sc">/</span><span class="er">/</span> 分布族对象（高斯、二项、泊松等）</span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>   String family_name <span class="ot">=</span> as<span class="sc">&lt;</span>String<span class="sc">&gt;</span>(family[<span class="st">&quot;family&quot;</span>]); <span class="sc">/</span><span class="er">/</span> 分布族名称（例如，<span class="st">&quot;gaussian&quot;</span>、<span class="st">&quot;binomial&quot;</span>、<span class="st">&quot;poisson&quot;</span>）</span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a>   </span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a>   NumericVector fitted_values <span class="ot">=</span> gee_model[<span class="st">&quot;fitted.values&quot;</span>];  <span class="sc">/</span><span class="er">/</span> 拟合模型值（预测值）</span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a>   NumericVector y <span class="ot">=</span> gee_model[<span class="st">&quot;y&quot;</span>];                          <span class="sc">/</span><span class="er">/</span> 实际结果值</span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a>   NumericVector residuals <span class="ot">=</span> gee_model[<span class="st">&quot;residuals&quot;</span>];          <span class="sc">/</span><span class="er">/</span> 模型残差</span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a>   </span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a>   double logLikQ <span class="ot">=</span> <span class="fl">0.0</span>;        <span class="sc">/</span><span class="er">/</span> 初始化对数似然值的变量</span>
+<span id="cb16-21"><a href="#cb16-21" tabindex="-1"></a>   R_xlen_t n <span class="ot">=</span> <span class="fu">residuals.size</span>(); <span class="sc">/</span><span class="er">/</span> 观测数</span>
+<span id="cb16-22"><a href="#cb16-22" tabindex="-1"></a>   double epsilon <span class="ot">=</span> <span class="fl">1e-15</span>;       <span class="sc">/</span><span class="er">/</span> 防止<span class="fu">log</span>(<span class="dv">0</span>)错误的小值</span>
+<span id="cb16-23"><a href="#cb16-23" tabindex="-1"></a>   </span>
+<span id="cb16-24"><a href="#cb16-24" tabindex="-1"></a>   <span class="sc">/</span><span class="er">/</span> 根据模型的分布族类型计算准似然值</span>
+<span id="cb16-25"><a href="#cb16-25" tabindex="-1"></a>   <span class="cf">if</span> (family_name <span class="sc">==</span> <span class="st">&quot;gaussian&quot;</span>) {</span>
+<span id="cb16-26"><a href="#cb16-26" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 对于高斯分布（正态分布）</span>
+<span id="cb16-27"><a href="#cb16-27" tabindex="-1"></a>     List geese <span class="ot">=</span> gee_model[<span class="st">&quot;geese&quot;</span>];</span>
+<span id="cb16-28"><a href="#cb16-28" tabindex="-1"></a>     <span class="cf">if</span> (<span class="sc">!</span><span class="fu">geese.containsElementNamed</span>(<span class="st">&quot;gamma&quot;</span>)) {</span>
+<span id="cb16-29"><a href="#cb16-29" tabindex="-1"></a>       <span class="fu">stop</span>(<span class="st">&quot;geese对象必须包含&#39;gama&#39;。&quot;</span>);</span>
+<span id="cb16-30"><a href="#cb16-30" tabindex="-1"></a>     }</span>
+<span id="cb16-31"><a href="#cb16-31" tabindex="-1"></a>     double gamma <span class="ot">=</span> geese[<span class="st">&quot;gamma&quot;</span>];  </span>
+<span id="cb16-32"><a href="#cb16-32" tabindex="-1"></a>     double sigma <span class="ot">=</span> <span class="fu">sqrt</span>(gamma);  <span class="sc">/</span><span class="er">/</span> 残差的标准误差</span>
+<span id="cb16-33"><a href="#cb16-33" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 高斯模型的准似然值计算</span>
+<span id="cb16-34"><a href="#cb16-34" tabindex="-1"></a>     logLikQ <span class="ot">=</span> <span class="sc">-</span> (n <span class="sc">/</span> <span class="fl">2.0</span>) <span class="sc">*</span> (<span class="fu">log</span>(<span class="dv">2</span> <span class="sc">*</span> M_PI) <span class="sc">+</span> <span class="fu">log</span>(sigma <span class="sc">*</span> sigma)) <span class="sc">-</span> <span class="fu">sum</span>(residuals <span class="sc">*</span> residuals) <span class="sc">/</span> (<span class="fl">2.0</span> <span class="sc">*</span> sigma <span class="sc">*</span> sigma);</span>
+<span id="cb16-35"><a href="#cb16-35" tabindex="-1"></a>     </span>
+<span id="cb16-36"><a href="#cb16-36" tabindex="-1"></a>   } <span class="cf">else</span> <span class="cf">if</span> (family_name <span class="sc">==</span> <span class="st">&quot;binomial&quot;</span>) {</span>
+<span id="cb16-37"><a href="#cb16-37" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 对于二项分布（逻辑回归）</span>
+<span id="cb16-38"><a href="#cb16-38" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 防止<span class="fu">log</span>(<span class="dv">0</span>)，通过将拟合值裁剪在epsilon和1 <span class="sc">-</span> epsilon之间</span>
+<span id="cb16-39"><a href="#cb16-39" tabindex="-1"></a>     fitted_values <span class="ot">=</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(fitted_values, epsilon), <span class="dv">1</span> <span class="sc">-</span> epsilon);  </span>
+<span id="cb16-40"><a href="#cb16-40" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 二项模型的准似然值计算</span>
+<span id="cb16-41"><a href="#cb16-41" tabindex="-1"></a>     logLikQ <span class="ot">=</span> <span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(fitted_values) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> y) <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> fitted_values));</span>
+<span id="cb16-42"><a href="#cb16-42" tabindex="-1"></a>     </span>
+<span id="cb16-43"><a href="#cb16-43" tabindex="-1"></a>   } <span class="cf">else</span> <span class="cf">if</span> (family_name <span class="sc">==</span> <span class="st">&quot;poisson&quot;</span>) {</span>
+<span id="cb16-44"><a href="#cb16-44" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 对于泊松分布（计数数据）</span>
+<span id="cb16-45"><a href="#cb16-45" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 防止<span class="fu">log</span>(<span class="dv">0</span>)，确保拟合值大于epsilon</span>
+<span id="cb16-46"><a href="#cb16-46" tabindex="-1"></a>     fitted_values <span class="ot">=</span> <span class="fu">pmax</span>(fitted_values, epsilon);  </span>
+<span id="cb16-47"><a href="#cb16-47" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 泊松模型的准似然值计算</span>
+<span id="cb16-48"><a href="#cb16-48" tabindex="-1"></a>     logLikQ <span class="ot">=</span> <span class="fu">sum</span>(y <span class="sc">*</span> <span class="fu">log</span>(fitted_values) <span class="sc">-</span> fitted_values <span class="sc">-</span> <span class="fu">lgamma</span>(y <span class="sc">+</span> <span class="dv">1</span>));</span>
+<span id="cb16-49"><a href="#cb16-49" tabindex="-1"></a>     </span>
+<span id="cb16-50"><a href="#cb16-50" tabindex="-1"></a>   } <span class="cf">else</span> {</span>
+<span id="cb16-51"><a href="#cb16-51" tabindex="-1"></a>     <span class="sc">/</span><span class="er">/</span> 如果模型的分布族不受支持，停止执行</span>
+<span id="cb16-52"><a href="#cb16-52" tabindex="-1"></a>     <span class="fu">stop</span>(<span class="st">&quot;该分布族的QAIC计算尚未实现。&quot;</span>);</span>
+<span id="cb16-53"><a href="#cb16-53" tabindex="-1"></a>   }</span>
+<span id="cb16-54"><a href="#cb16-54" tabindex="-1"></a>   </span>
+<span id="cb16-55"><a href="#cb16-55" tabindex="-1"></a>   <span class="sc">/</span><span class="er">/</span> 获取模型中的参数数量（k）（自由度）</span>
+<span id="cb16-56"><a href="#cb16-56" tabindex="-1"></a>   NumericVector coefficients <span class="ot">=</span> gee_model[<span class="st">&quot;coefficients&quot;</span>]; <span class="sc">/</span><span class="er">/</span> 提取系数作为NumericVector</span>
+<span id="cb16-57"><a href="#cb16-57" tabindex="-1"></a>   int k <span class="ot">=</span> <span class="fu">coefficients.size</span>();  <span class="sc">/</span><span class="er">/</span> 获取模型参数的数量</span>
+<span id="cb16-58"><a href="#cb16-58" tabindex="-1"></a>   </span>
+<span id="cb16-59"><a href="#cb16-59" tabindex="-1"></a>   <span class="sc">/</span><span class="er">/</span> 计算QAIC<span class="sc">:</span> QAIC <span class="ot">=</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> 准似然值 <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> 参数数量 <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">*</span> k <span class="sc">*</span> (k <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">/</span> (n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb16-60"><a href="#cb16-60" tabindex="-1"></a>   double QAIC <span class="ot">=</span> <span class="sc">-</span><span class="fl">2.0</span> <span class="sc">*</span> logLikQ <span class="sc">+</span> <span class="fl">2.0</span> <span class="sc">*</span> k <span class="sc">+</span> (<span class="fl">2.0</span> <span class="sc">*</span> k <span class="sc">*</span> (k <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">/</span> (n <span class="sc">-</span> k <span class="sc">-</span> <span class="dv">1</span>);</span>
+<span id="cb16-61"><a href="#cb16-61" tabindex="-1"></a>   </span>
+<span id="cb16-62"><a href="#cb16-62" tabindex="-1"></a>   <span class="sc">/</span><span class="er">/</span> 返回计算得到的QAIC值</span>
+<span id="cb16-63"><a href="#cb16-63" tabindex="-1"></a>   return QAIC;</span>
+<span id="cb16-64"><a href="#cb16-64" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="示例-1" class="section level2">
+<h2>示例</h2>
+<p>以下是如何使用 <code>calculate_QAIC_R</code> 和
+<code>calculate_QAIC_cpp</code> 函数计算不同族类型的 GEE 模型的 QAIC
+值的示例：高斯族、二项族和泊松族。为了演示清晰，示例中使用了较小的样本量。</p>
+<div id="示例-1高斯族正态分布-1" class="section level3">
+<h3>示例 1：高斯族（正态分布）</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># 模拟一些数据</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>mydata_small_gaussian <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">50</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">rnorm</span>(<span class="dv">50</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co"># 拟合一个高斯族的 GEE 模型</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>fit_gaussian_small <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>  y <span class="sc">~</span> x1 <span class="sc">+</span> x2, </span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>  <span class="at">family =</span> gaussian, </span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>  <span class="at">data =</span> mydata_small_gaussian, </span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>  <span class="at">id =</span> id, </span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;exchangeable&quot;</span></span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>)</span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a><span class="co"># 计算 QAIC</span></span>
+<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a>qaic_gaussian_r_small <span class="ot">&lt;-</span> <span class="fu">calculate_QAIC_R</span>(fit_gaussian_small)</span>
+<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a><span class="fu">print</span>(qaic_gaussian_r_small)</span></code></pre></div>
+<pre><code>## [1] 151.8902</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>qaic_gaussian_cpp_small <span class="ot">&lt;-</span> <span class="fu">calculate_QAIC_cpp</span>(fit_gaussian_small)</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">print</span>(qaic_gaussian_cpp_small)</span></code></pre></div>
+<pre><code>## [1] 151.8898</code></pre>
+</div>
+<div id="示例-2二项族用于二元结果的逻辑回归-1" class="section level3">
+<h3>示例 2：二项族（用于二元结果的逻辑回归）</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># 模拟一些二项型结果数据</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>mydata_small_binomial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">50</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">rnorm</span>(<span class="dv">50</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rbinom</span>(<span class="dv">50</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>)</span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a><span class="co"># 拟合一个二项族的 GEE 模型</span></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>fit_binomial_small <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>  y <span class="sc">~</span> x1 <span class="sc">+</span> x2, </span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>  <span class="at">family =</span> binomial, </span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>  <span class="at">data =</span> mydata_small_binomial, </span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>  <span class="at">id =</span> id, </span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;exchangeable&quot;</span></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a>)</span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a><span class="co"># 计算 QAIC</span></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a>qaic_binomial_r_small <span class="ot">&lt;-</span> <span class="fu">calculate_QAIC_R</span>(fit_binomial_small)</span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a><span class="fu">print</span>(qaic_binomial_r_small)</span></code></pre></div>
+<pre><code>## [1] 75.39276</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>qaic_binomial_cpp_small <span class="ot">&lt;-</span> <span class="fu">calculate_QAIC_cpp</span>(fit_binomial_small)</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">print</span>(qaic_binomial_cpp_small)</span></code></pre></div>
+<pre><code>## [1] 75.39276</code></pre>
+</div>
+<div id="示例-3泊松族计数数据-1" class="section level3">
+<h3>示例 3：泊松族（计数数据）</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># 模拟一些计数数据</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">789</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>mydata_small_poisson <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>  <span class="at">x1 =</span> <span class="fu">rnorm</span>(<span class="dv">50</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>  <span class="at">x2 =</span> <span class="fu">rnorm</span>(<span class="dv">50</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rpois</span>(<span class="dv">50</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>)</span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a><span class="co"># 拟合一个泊松族的 GEE 模型</span></span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a>fit_poisson_small <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a>  y <span class="sc">~</span> x1 <span class="sc">+</span> x2, </span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a>  <span class="at">family =</span> poisson, </span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a>  <span class="at">data =</span> mydata_small_poisson, </span>
+<span id="cb25-15"><a href="#cb25-15" tabindex="-1"></a>  <span class="at">id =</span> id, </span>
+<span id="cb25-16"><a href="#cb25-16" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;exchangeable&quot;</span></span>
+<span id="cb25-17"><a href="#cb25-17" tabindex="-1"></a>)</span>
+<span id="cb25-18"><a href="#cb25-18" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" tabindex="-1"></a><span class="co"># 计算 QAIC</span></span>
+<span id="cb25-20"><a href="#cb25-20" tabindex="-1"></a>qaic_poisson_r_small <span class="ot">&lt;-</span> <span class="fu">calculate_QAIC_R</span>(fit_poisson_small)</span>
+<span id="cb25-21"><a href="#cb25-21" tabindex="-1"></a><span class="fu">print</span>(qaic_poisson_r_small)</span></code></pre></div>
+<pre><code>## [1] 163.16</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>qaic_poisson_cpp_small <span class="ot">&lt;-</span> <span class="fu">calculate_QAIC_cpp</span>(fit_poisson_small)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">print</span>(qaic_poisson_cpp_small)</span></code></pre></div>
+<pre><code>## [1] 163.16</code></pre>
+</div>
+</div>
+</div>
+<div id="结论" class="section level1">
+<h1>结论</h1>
+<div id="解释" class="section level2">
+<h2>解释</h2>
+<p>QIC 和 QAIC 值提供了模型比较的依据： 较低的 QIC 和 QAIC
+值：表示模型拟合较好，相对于其复杂性。 较高的 QIC 和 QAIC
+值：表示拟合较差或模型过于复杂。 在比较多个 GEE 模型时，选择 QIC 或 QAIC
+值最低的模型。</p>
+</div>
+<div id="限制" class="section level2">
+<h2>限制</h2>
+<p>函数目前仅支持高斯族、二项族和泊松族。如果尝试使用其他族，将会导致错误。
+QIC 和 QAIC 都基于准似然框架，可能不适用于所有类型的数据或模型。</p>
+</div>
+</div>
+<div id="总结" class="section level1">
+<h1>总结</h1>
+<p>SA24204178
+包提供了便捷的工具来计算GEE模型的QIC和QAIC，帮助用户进行模型选择和比较。通过结合R和C++的高效计算，用户可以轻松评估不同模型的拟合优度和复杂度，从而选择最优的统计模型。</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
